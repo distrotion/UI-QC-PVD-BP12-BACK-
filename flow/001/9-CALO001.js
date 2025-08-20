@@ -1311,20 +1311,21 @@ router.post('/CALO001-FINISH', async (req, res) => {
   }else if (CALO001db['RESULTFORMAT'] === 'CAL1') {
     for (i = 0; i < CALO001db['confirmdata'].length; i++) {
       CALO001db["value"].push({
-        "VAL1": input['VAL1'],
-        "VAL2": input['VAL2'],
-        "VAL3": input['VAL3'],
-        "VAL4": input['VAL4'],
-        "Area": input['Area'],
-        "FORMULA": input['FORMULA'],
-        "Result": input['Result'],
+        "VAL1": CALO001db['confirmdata'][i]['VAL1'],
+        "VAL2": CALO001db['confirmdata'][i]['VAL2'],
+        "VAL3": CALO001db['confirmdata'][i]['VAL3'],
+        "VAL4": CALO001db['confirmdata'][i]['VAL4'],
+        "Area": CALO001db['confirmdata'][i]['Area'],
+        "FORMULA": CALO001db['confirmdata'][i]['FORMULA'],
+        "Result": CALO001db['confirmdata'][i]['Result'],
 
         //PO3
-        "Result1": input['Result1'],
-        "Result2": input['Result2'],
+        "Result1": CALO001db['confirmdata'][i]['Result1'],
+        "Result2": CALO001db['confirmdata'][i]['Result2'],
         "PO2": "CALO",
-        "PO3": input['Result'],
-        "PO5": input['Result1'],
+        "PO3": CALO001db['confirmdata'][i]['PO3'],
+        "PO5": CALO001db['confirmdata'][i]['PO5'],
+        
       });
     }
   }
