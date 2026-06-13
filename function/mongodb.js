@@ -18,6 +18,10 @@ async function getClient() {
 exports.insertMany = async (db_input, collection_input, input) => {
   const c = await getClient();
   const collection = c.db(db_input).collection(collection_input);
+  // รับประกัน index บน MAIN_DATA: MAIN ที่เพิ่งเกิดหลัง rename จะได้ index อัตโนมัติ (idempotent)
+  if (db_input === 'MAIN_DATA') {
+    await collection.createIndex({ MATCP: 1, ALL_DONE: 1, dateG: 1 });
+  }
   return collection.insertMany(input);
 };
 
